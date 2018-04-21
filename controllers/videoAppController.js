@@ -56,7 +56,8 @@ exports.get_one_movie = (req, res) => {
       res.render('moviePage', {
         movie : req.params.id,
         moviesrc : req.params.movie,
-        data : JSON.stringify(rows),
+        // data : JSON.stringify(rows),
+        // data : rows[0],
         mainpage : false,
         videopage : true
       });

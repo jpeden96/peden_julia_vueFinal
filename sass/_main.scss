@@ -30,7 +30,7 @@ header {
 
 video { width: 100%; }
 
-.movie-wrapper { 
+.movie-wrapper {
 	position: relative; padding-top: 52px;
 
 	aside {
@@ -62,15 +62,15 @@ video { width: 100%; }
   list-style-type: none;
 }
 
-.genre-lists { 
+.genre-lists {
 	padding: 0 14px; overflow: hidden;
 
-	> div { 
-		position: relative; 
-		transition: all .5s; 
+	> div {
+		position: relative;
+		transition: all .5s;
 		white-space: nowrap;
 		overflow-x: auto;
-		overflow-y: hidden; 
+		overflow-y: hidden;
 	}
 }
 
@@ -92,14 +92,14 @@ nav {
 			cursor: pointer;
 		}
 	}
-} 
+}
 
 footer {
 	padding: 2em 1em;
 	clear: both;
 
 
-	ul { 
+	ul {
 		list-style-type: none;
 
 		li {
@@ -110,4 +110,19 @@ footer {
 			margin-top: 0.4em;
 		}
 	}
+}
+
+.info-left {
+	float:  left;
+	width: 20%;
+	padding: 40px;
+}
+
+.video-right {
+	float: right;
+	width: 70%;
+}
+
+#video {
+	padding-top:		100px;
 }

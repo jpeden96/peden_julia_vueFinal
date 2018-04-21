@@ -3,9 +3,22 @@
     <a href="/" class="back-button">
         <i class="far fa-arrow-alt-circle-left"></i>
     </a>
-    <video autoplay controls>
-        <source src="/video/{{moviesrc}}" type="video/mp4">
-    </video>
+
+<div class="info-left">
+  <h4 class="movie-title">{{ movies_title }}</h4>
+  <span class="movie-year">
+    {{ movies_year }} &nbsp;&bull;&nbsp; {{ movies_runtime }}
+  </span>
+  <i class="movie-genre">{{ genre_name }}</i>
+  <p class="paragraph">{{ movies_storyline }}</p>
+</div>
+
+<div class="video-right">
+      <video autoplay controls>
+        <source src="/video/{{ moviesrc }}" type="video/mp4">
+      </video>
+    </div>
+
     <article class="comments" v-if="reviews.length > 0">
         <dir v-for="review in reviews" :key="review.id">
             <!-- temporary vue component -->
@@ -17,7 +30,7 @@
         </dir>
 
     </article>
-    <aside class="add-comment" :class="{ floatRight : reviews.length > 0 }">
+    <aside class="add-comment" :class="{ floatLeft : reviews.length > 0 }">
         <!-- add our own reviews -->
         <h4 class="review-heading">Add a Review</h4>
         <span class="hidden movId">{{movie}}</span>
