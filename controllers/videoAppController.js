@@ -35,34 +35,12 @@ exports.get_all_movies = (req, res) => {  //make this public
 
 //getting one movie
 exports.get_one_movie = (req, res) => {
-  console.log('hit get one route');
-
-  connect.getConnection((err, connection) => {
-    if (err) {
-      return console.log(err.message);
-    }
-
-    let query = `SELECT * FROM tbl_comments WHERE comments_movie = "${req.params.id}"`;
-
-    connect.query(query, (err, rows) => {
-      connection.release();
-
-      if (err) {
-        return console.log(err.message);
-      }
-
-      console.log(rows);
-
-      res.render('moviePage', {
+res.render('moviePage', {
         movie : req.params.id,
-        moviesrc : req.params.movie,
-        // data : JSON.stringify(rows),
-        // data : rows[0],
+        // moviesrc : req.params.movie,
         mainpage : false,
         videopage : true
       });
-    })
-  })
 };
 
 exports.post_new_review = (req, res) => {  //for reviews
@@ -85,3 +63,33 @@ exports.post_new_review = (req, res) => {  //for reviews
     })
   })
 };
+
+exports.api_single_movie = (req, res) => {
+  console.log('hit get one route');
+
+  connect.getConnection((err, connection) => {
+    if (err) {
+      return console.log(err.message);
+    }
+
+    let query = `SELECT * FROM tbl_movies, tbl_comments WHERE tbl_movies.movies_id = ${req.params.id} AND tbl_comments.comments_movie = ${req.params.id}`;
+
+    connect.query(query, (err, rows) => {
+      connection.release();
+
+      if (err) {
+        return console.log(err.message);
+      }
+
+      console.log(rows);
+
+      res.json({
+              movie : req.params.id,
+              moviesrc : req.params.movie,
+              data : rows[0],
+              mainpage : false,
+              videopage : true
+            });
+      });
+    })
+  }

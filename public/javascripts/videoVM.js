@@ -18,27 +18,42 @@ Vue.component('review-stars', {
 			}
 		}
 	}
-})
+}),
+
 
 var myVideoApp = {
 
-	movieReviews(data) {
+	movies:function(data){ //take data in and assign to movie attribute
+  	myVideoApp.vm.movie = data;
+	},
+
+	movieReviews:function(data) {
 		//process the review data and push it into the Vue instance
 		data.forEach(review => myVideoApp.vm.reviews.push(review));
 
 	},
 
-
 	vm: new Vue({
-		delimiters: ['${','}'],
-		el: '#video',
-		data: {
-			reviews: [],
-			numStars: 0,
-			review: '',
-			testMessage:"Testing"
+        delimiters: ['${','}'],
+        el: '#video',
+        data: {
+            reviews: [],
+            numStars: 0,
+            review: '',
+            testMessage:"Testing"
 
-		},
+        },
+        created:{
+					let movieId = document.querySelector('.movId').textContent;
+					axios.get('api/movies/'+movieID)
+					.then(response=>{
+					  console.log(response.data);
+					})
+					.catch(err=>{
+					  console.log(err);
+					});
+        },
+
 		methods: {
 			addReview() {
 				let movieId = document.querySelector('.movId').textContent;
